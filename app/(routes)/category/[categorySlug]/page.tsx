@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const PRODUCTS_PER_PAGE = 6;
 
-export default function page() {
+export default function Page() {
   const params = useParams();
   const { categorySlug } = params;
   const { result, loading }: ResponseType = useGetCategoryProduct(categorySlug);

@@ -95,8 +95,8 @@ export default function PhoneDetails() {
             </p>
             <p className="text-sm">
               Experience the ultimate smartphone with the Galaxy Ultra S23.
-              Featuring a powerful Snapdragon 8 Gen 2 processor, stunning 6.7"
-              AMOLED display, and professional-grade camera system.
+              Featuring a powerful Snapdragon 8 Gen 2 processor, stunning
+              6.7&quot AMOLED display, and professional-grade camera system.
             </p>
           </div>
 
@@ -216,7 +216,9 @@ export default function PhoneDetails() {
                 <li>Professional-grade camera system with 50MP main sensor</li>
                 <li>Snapdragon 8 Gen 2 for lightning-fast performance</li>
                 <li>All-day battery life with 45W fast charging</li>
-                <li>Stunning 6.7" AMOLED display with 120Hz refresh rate</li>
+                <li>
+                  Stunning 6.7&quot AMOLED display with 120Hz refresh rate
+                </li>
                 <li>IP68 water and dust resistance</li>
                 <li>Enhanced night mode photography</li>
                 <li>Advanced AI features for optimal performance</li>
