@@ -5,16 +5,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { formatPrice } from "@/lib/formatPrice";
 import { ProductType } from "@/types/product";
+import { ResponseType } from "@/types/response";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
-const PRODUCTS_PER_PAGE = 6;
 
 export default function Page() {
+  const PRODUCTS_PER_PAGE = 6;
   const params = useParams();
   const { categorySlug } = params;
-  const { result, loading }: ResponseType = useGetCategoryProduct(categorySlug);
+  const { result, loading, error }: ResponseType = useGetCategoryProduct(categorySlug as string);
   console.log("Result de getCategory", result);
   const [currentPage, setCurrentPage] = useState(1);
   // Calcular productos paginados
@@ -31,7 +32,7 @@ export default function Page() {
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
-
+  if (error) return <p>Error al cargar productos</p>;
   return (
     <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
       {result !== null && !loading && (
