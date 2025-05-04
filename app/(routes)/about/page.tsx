@@ -1,12 +1,12 @@
-import Image from "next/image"
-import Link from "next/link"
-import { MapPin, Mail, Phone, Clock } from "lucide-react"
+import Image from "next/image";
+import Link from "next/link";
+import { MapPin, Mail, Phone, Clock } from "lucide-react";
 
 export default function page() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-primary/10 to-primary/5">
+      <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-primary/10 to-primary/5">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
@@ -14,7 +14,8 @@ export default function page() {
                 Sobre Nosotros
               </h1>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                Conoce nuestra historia, valores y el equipo que hace posible nuestra misión cada día.
+                Conoce nuestra historia, valores y el equipo que hace posible
+                nuestra misión cada día.
               </p>
             </div>
           </div>
@@ -22,11 +23,11 @@ export default function page() {
       </section>
 
       {/* Misión, Visión y Valores */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-10 lg:grid-cols-3">
-            <div className="space-y-4">
-              <div className="inline-flex items-center justify-center rounded-md bg-primary/10 p-2 text-primary">
+      <section className="flex justify-center items-center w-full py-12 md:py-24 lg:py-32">
+        <div className="mx-auto max-w-screen-lg px-4 md:px-6 ">
+          <div className="grid gap-10 lg:grid-cols-3 ">
+            <div className="space-y-4 ">
+              <div className="inline-flex items-center justify-center rounded-md bg-primary/10 p-2 text-primary ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -45,8 +46,9 @@ export default function page() {
               </div>
               <h3 className="text-2xl font-bold">Nuestra Misión</h3>
               <p className="text-muted-foreground">
-                Proporcionar soluciones innovadoras que transformen la manera en que nuestros clientes abordan sus
-                desafíos, creando valor sostenible y contribuyendo positivamente a la sociedad.
+                Proporcionar soluciones innovadoras que transformen la manera en
+                que nuestros clientes abordan sus desafíos, creando valor
+                sostenible y contribuyendo positivamente a la sociedad.
               </p>
             </div>
             <div className="space-y-4">
@@ -68,8 +70,9 @@ export default function page() {
               </div>
               <h3 className="text-2xl font-bold">Nuestra Visión</h3>
               <p className="text-muted-foreground">
-                Ser reconocidos como líderes en nuestro sector, destacando por la excelencia, la innovación y el
-                compromiso con nuestros clientes, colaboradores y el medio ambiente.
+                Ser reconocidos como líderes en nuestro sector, destacando por
+                la excelencia, la innovación y el compromiso con nuestros
+                clientes, colaboradores y el medio ambiente.
               </p>
             </div>
             <div className="space-y-4">
@@ -184,24 +187,30 @@ export default function page() {
       </section>
 
       {/* Historia */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+      <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-muted">
         <div className="container px-4 md:px-6">
           <div className="grid gap-10 lg:grid-cols-2 items-center">
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Nuestra Historia</h2>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
+                Nuestra Historia
+              </h2>
               <p className="text-muted-foreground">
-                Fundada en 2010, nuestra empresa nació con la visión de transformar el sector a través de soluciones
-                innovadoras y un enfoque centrado en el cliente. A lo largo de los años, hemos crecido de manera
-                constante, expandiendo nuestras operaciones y diversificando nuestros servicios.
+                Fundada en 2010, nuestra empresa nació con la visión de
+                transformar el sector a través de soluciones innovadoras y un
+                enfoque centrado en el cliente. A lo largo de los años, hemos
+                crecido de manera constante, expandiendo nuestras operaciones y
+                diversificando nuestros servicios.
               </p>
               <p className="text-muted-foreground">
-                Hemos superado desafíos, celebrado éxitos y aprendido valiosas lecciones que nos han permitido
-                consolidarnos como referentes en nuestro campo. Cada etapa de nuestra historia ha contribuido a forjar
-                la identidad y los valores que hoy nos definen.
+                Hemos superado desafíos, celebrado éxitos y aprendido valiosas
+                lecciones que nos han permitido consolidarnos como referentes en
+                nuestro campo. Cada etapa de nuestra historia ha contribuido a
+                forjar la identidad y los valores que hoy nos definen.
               </p>
               <p className="text-muted-foreground">
-                Miramos al futuro con optimismo, comprometidos con seguir innovando y creciendo, siempre fieles a
-                nuestra misión y valores fundamentales.
+                Miramos al futuro con optimismo, comprometidos con seguir
+                innovando y creciendo, siempre fieles a nuestra misión y valores
+                fundamentales.
               </p>
             </div>
             <div className="flex justify-center">
@@ -218,13 +227,16 @@ export default function page() {
       </section>
 
       {/* Nuestro Equipo */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      <section className="flex justify-center w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Nuestro Equipo</h2>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
+                Nuestro Equipo
+              </h2>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                Conoce a los profesionales que hacen posible nuestra misión cada día.
+                Conoce a los profesionales que hacen posible nuestra misión cada
+                día.
               </p>
             </div>
           </div>
@@ -240,9 +252,12 @@ export default function page() {
               />
               <div className="space-y-2 text-center">
                 <h3 className="text-xl font-bold">Ana Martínez</h3>
-                <p className="text-sm text-muted-foreground">Directora General</p>
                 <p className="text-sm text-muted-foreground">
-                  Con más de 15 años de experiencia en el sector, lidera nuestra empresa con visión y determinación.
+                  Directora General
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Con más de 15 años de experiencia en el sector, lidera nuestra
+                  empresa con visión y determinación.
                 </p>
               </div>
             </div>
@@ -257,9 +272,12 @@ export default function page() {
               />
               <div className="space-y-2 text-center">
                 <h3 className="text-xl font-bold">Carlos Rodríguez</h3>
-                <p className="text-sm text-muted-foreground">Director de Operaciones</p>
                 <p className="text-sm text-muted-foreground">
-                  Especialista en optimización de procesos y gestión eficiente de recursos.
+                  Director de Operaciones
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Especialista en optimización de procesos y gestión eficiente
+                  de recursos.
                 </p>
               </div>
             </div>
@@ -274,9 +292,12 @@ export default function page() {
               />
               <div className="space-y-2 text-center">
                 <h3 className="text-xl font-bold">Laura Sánchez</h3>
-                <p className="text-sm text-muted-foreground">Directora de Innovación</p>
                 <p className="text-sm text-muted-foreground">
-                  Impulsa el desarrollo de nuevas soluciones y la implementación de tecnologías emergentes.
+                  Directora de Innovación
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Impulsa el desarrollo de nuevas soluciones y la implementación
+                  de tecnologías emergentes.
                 </p>
               </div>
             </div>
@@ -291,9 +312,12 @@ export default function page() {
               />
               <div className="space-y-2 text-center">
                 <h3 className="text-xl font-bold">Miguel Torres</h3>
-                <p className="text-sm text-muted-foreground">Director Comercial</p>
                 <p className="text-sm text-muted-foreground">
-                  Experto en desarrollo de negocio y creación de relaciones duraderas con clientes.
+                  Director Comercial
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Experto en desarrollo de negocio y creación de relaciones
+                  duraderas con clientes.
                 </p>
               </div>
             </div>
@@ -302,11 +326,13 @@ export default function page() {
       </section>
 
       {/* Ubicación */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+      <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-muted">
         <div className="container px-4 md:px-6">
           <div className="grid gap-10 lg:grid-cols-2 items-center">
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Nuestra Ubicación</h2>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
+                Nuestra Ubicación
+              </h2>
               <div className="space-y-3">
                 <div className="flex items-start space-x-4">
                   <MapPin className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
@@ -366,13 +392,16 @@ export default function page() {
       </section>
 
       {/* Logros y Reconocimientos */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      <section className="flex justify-center w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Logros y Reconocimientos</h2>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
+                Logros y Reconocimientos
+              </h2>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                A lo largo de nuestra trayectoria, hemos sido reconocidos por nuestro compromiso con la excelencia.
+                A lo largo de nuestra trayectoria, hemos sido reconocidos por
+                nuestro compromiso con la excelencia.
               </p>
             </div>
           </div>
@@ -398,7 +427,8 @@ export default function page() {
               </div>
               <h3 className="text-xl font-bold">Premio a la Innovación 2022</h3>
               <p className="text-muted-foreground">
-                Reconocidos por la Cámara de Comercio por nuestras soluciones innovadoras en el sector.
+                Reconocidos por la Cámara de Comercio por nuestras soluciones
+                innovadoras en el sector.
               </p>
             </div>
             {/* Logro 2 */}
@@ -426,7 +456,8 @@ export default function page() {
               </div>
               <h3 className="text-xl font-bold">Certificación ISO 9001</h3>
               <p className="text-muted-foreground">
-                Obtuvimos la certificación que avala nuestro compromiso con la calidad en todos nuestros procesos.
+                Obtuvimos la certificación que avala nuestro compromiso con la
+                calidad en todos nuestros procesos.
               </p>
             </div>
             {/* Logro 3 */}
@@ -454,9 +485,12 @@ export default function page() {
                   <path d="M7 7V3" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold">Empresa Socialmente Responsable</h3>
+              <h3 className="text-xl font-bold">
+                Empresa Socialmente Responsable
+              </h3>
               <p className="text-muted-foreground">
-                Reconocimiento por nuestras iniciativas de responsabilidad social y compromiso con la comunidad.
+                Reconocimiento por nuestras iniciativas de responsabilidad
+                social y compromiso con la comunidad.
               </p>
             </div>
           </div>
@@ -464,13 +498,16 @@ export default function page() {
       </section>
 
       {/* CTA */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground">
+      <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">¿Listo para trabajar con nosotros?</h2>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
+                ¿Listo para trabajar con nosotros?
+              </h2>
               <p className="mx-auto max-w-[700px] md:text-xl">
-                Contáctanos hoy mismo y descubre cómo podemos ayudarte a alcanzar tus objetivos.
+                Contáctanos hoy mismo y descubre cómo podemos ayudarte a
+                alcanzar tus objetivos.
               </p>
             </div>
             <Link
@@ -483,6 +520,5 @@ export default function page() {
         </div>
       </section>
     </div>
-  )
+  );
 }
-
