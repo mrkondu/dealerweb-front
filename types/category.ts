@@ -2,8 +2,8 @@ export type CategoryType = {
     id: number;
     categoryName: string;
     slug: string;
-    mainimage: {
+    mainImage: {
         url: string;
-    };
+      }[] | null;
 
   };

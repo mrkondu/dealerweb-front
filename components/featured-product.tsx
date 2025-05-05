@@ -32,13 +32,17 @@ const FeaturedProducts = () => {
               const {
                 id,
                 slug,
-                images,
+                image,
                 productName,
                 capacityProduct,
                 category,
               } = product;
               const categoryName = category?.data?.attributes?.categoryName;
-              console.log("IMAGE", images[0].url);
+              // console.log("IMAGE", image[0]?.url);
+              console.log("IMAGE", image?.[0]?.url || "No image");
+              const imageUrl =
+                image || "/public/logo/DEALERTECH-BLANCO-PNG-1.png";
+
               return (
                 <CarouselItem
                   key={id}
@@ -48,7 +52,7 @@ const FeaturedProducts = () => {
                     <Card className="py-4 border border-gray-200 shadow-none">
                       <CardContent className="relative flex items-center justify-center px-6 py-2 ">
                         <img
-                          src={`${images[0].url}`}
+                          src={`${imageUrl[0]?.url}`}
                           alt="Image Featured"
                           className="h-60 object-cover"
                         />

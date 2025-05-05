@@ -7,7 +7,7 @@ export type ProductType = {
     capacityProduct: string;
     active: boolean;
     isFeatured: boolean;
-    images: {
+    image: {
       id: number;
       url: string;
     }[]; // images es un array de objetos, cada objeto con id y url.

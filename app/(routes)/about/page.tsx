@@ -23,7 +23,7 @@ export default function page() {
       </section>
 
       {/* Misión, Visión y Valores */}
-      <section className="flex justify-center items-center w-full py-12 md:py-24 lg:py-32">
+      <section className="flex justify-center items-center w-full py-12 md:py-24 lg:py-32 ">
         <div className="mx-auto max-w-screen-lg px-4 md:px-6 ">
           <div className="grid gap-10 lg:grid-cols-3 ">
             <div className="space-y-4 ">
