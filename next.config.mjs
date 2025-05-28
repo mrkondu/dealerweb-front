@@ -7,11 +7,10 @@ const nextConfig = {
                 hostname: '**',
             },
         ],
-      },
-  optimizeFonts: true,
-  experimental: {
-    optimizeCss: true,
-  },
+    },
+    experimental: {
+        optimizeCss: true,
+    },
 };
 
 export default nextConfig;
