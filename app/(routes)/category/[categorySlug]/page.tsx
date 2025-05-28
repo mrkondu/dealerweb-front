@@ -10,12 +10,13 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
-
 export default function Page() {
   const PRODUCTS_PER_PAGE = 6;
   const params = useParams();
   const { categorySlug } = params;
-  const { result, loading, error }: ResponseType = useGetCategoryProduct(categorySlug as string);
+  const { result, loading, error }: ResponseType = useGetCategoryProduct(
+    categorySlug as string
+  );
   console.log("Result de getCategory", result);
   const [currentPage, setCurrentPage] = useState(1);
   // Calcular productos paginados
