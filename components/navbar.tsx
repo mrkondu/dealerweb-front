@@ -10,47 +10,57 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max-w-4lxl md:max-w-6xl">
-      <div className="flex flex-row items-center">
+    <nav className="flex items-center justify-between p-4 mx-auto max-w-7xl">
+      <div className="flex items-center gap-2">
         <Image
           src="/logo/DEALERTECH-BLANCO-PNG-1.png"
           width={100}
           height={100}
-          alt="Logodealer"
+          alt="Logo Dealertech"
           priority
+          className="cursor-pointer"
+          onClick={() => router.push("/")}
         />
-        <h1 onClick={() => router.push("/")}>
+        <h1
+          className="text-xl font-medium cursor-pointer"
+          onClick={() => router.push("/")}
+        >
           Dealer
-          <span className="font-bold font-black">tech</span>
+          <span className="font-bold">tech</span>
         </h1>
       </div>
 
-      <div className="items-center justify-between  hidden sm:flex">
+      <div className="hidden sm:block">
         <MenuList />
       </div>
-      <div className="flex sm:hidden">
+
+      <div className="sm:hidden">
         <ItemsMenuMobile />
       </div>
-      <div className="flex items-center justify-between gap-2 sm:gap-7">
-        <ShoppingCart
-          strokeWidth="1"
-          className="cursor-pointer"
+
+      <div className="flex items-center gap-4 sm:gap-7">
+        <button
           onClick={() => router.push("/cart")}
-        />
-        <Heart
-          strokeWidth="1"
-          className="cursor-pointer"
+          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+        >
+          <ShoppingCart className="w-5 h-5" strokeWidth="1" />
+        </button>
+        <button
           onClick={() => router.push("/loved-products")}
-        />
-        <UserRound
-          strokeWidth="1"
-          className="cursor-pointer"
-          onClick={() => router.push("/loved-products")}
-        />
+          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+        >
+          <Heart className="w-5 h-5" strokeWidth="1" />
+        </button>
+        <button
+          onClick={() => router.push("/profile")}
+          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+        >
+          <UserRound className="w-5 h-5" strokeWidth="1" />
+        </button>
 
         <ToggleTheme />
       </div>
-    </div>
+    </nav>
   );
 };
 

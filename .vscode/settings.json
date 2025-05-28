@@ -18,5 +18,18 @@
         "titleBar.inactiveBackground": "#aa23ff99",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#aa23ff"
+    "peacock.color": "#aa23ff",
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "tailwindCSS.includeLanguages": {
+        "typescript": "javascript",
+        "typescriptreact": "javascript"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    }
 }
