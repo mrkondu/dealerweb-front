@@ -8,29 +8,60 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Heart, ShoppingCart, Share2 } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import { useGetProductBySlug } from "@/api/getProductBySlug";
+import { formatPrice } from "@/lib/formatPrice";
+import { ProductType } from "@/types/product";
+
+interface Specification {
+  name: string;
+  value: string;
+}
 
 export default function PhoneDetails() {
-  const [selectedColor, setSelectedColor] = useState("Midnight Black");
-  const [selectedStorage, setSelectedStorage] = useState("128GB");
+  const params = useParams();
+  const router = useRouter();
+  const {
+    result: product,
+    loading,
+    error,
+  } = useGetProductBySlug(params.productSlug as string);
 
-  const colors = [
-    { name: "Midnight Black", hex: "#000000" },
-    { name: "Stellar Blue", hex: "#0047AB" },
-    { name: "Cosmic Silver", hex: "#C0C0C0" },
-  ];
+  const handleWhatsAppRedirect = () => {
+    if (!product) return;
 
-  const storageOptions = ["128GB", "256GB", "512GB"];
+    const whatsappNumber = "3764585715";
+    const message =
+      "¡Hola! Me interesa el siguiente producto:\n\n" +
+      `*${product.productName}*\n` +
+      `Capacidad: ${product.capacityProduct}\n` +
+      `Precio: ${formatPrice(product.price)}\n\n` +
+      `Ver producto: ${window.location.origin}/product/${product.slug}`;
 
-  const phoneSpecs = [
-    { name: "Processor", value: "Snapdragon 8 Gen 2" },
-    { name: "RAM", value: "8GB LPDDR5" },
-    { name: "Display", value: '6.7" AMOLED, 120Hz' },
-    { name: "Camera", value: "50MP Main + 12MP Ultra + 10MP Telephoto" },
-    { name: "Battery", value: "5000mAh, 45W Fast Charging" },
-    { name: "OS", value: "Android 13" },
-    { name: "Dimensions", value: "146.3 x 70.9 x 7.6mm" },
-    { name: "Weight", value: "168g" },
-  ];
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-neutral-950 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900 dark:border-white"></div>
+      </div>
+    );
+  }
+
+  if (error || !product) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-neutral-950 flex items-center justify-center">
+        <p className="text-red-500">Error al cargar el producto</p>
+      </div>
+    );
+  }
+
+  const mainImage =
+    product.image?.data?.[0]?.attributes?.url || "/placeholder.svg";
+  const hasAdditionalImages = product.image?.data?.length > 1;
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
@@ -39,109 +70,77 @@ export default function PhoneDetails() {
         <div className="space-y-4">
           <div className="relative aspect-square overflow-hidden rounded-xl border bg-muted">
             <Image
-              src="https://m.media-amazon.com/images/I/71+uDstZNwL._AC_SL1500_.jpg"
-              alt="Galaxy Ultra S23"
+              src={mainImage}
+              alt={`Imagen principal de ${product.productName}`}
               fill
-              className="object-cover"
+              className="object-contain p-4"
               priority
+              unoptimized={mainImage === "/placeholder.svg"}
             />
-            <Badge className="absolute top-4 left-4 bg-red-500 hover:bg-red-600">
-              -15% OFF
-            </Badge>
+            {product.isFeatured && (
+              <Badge className="absolute top-4 left-4 bg-yellow-400 text-black hover:bg-yellow-500">
+                Destacado
+              </Badge>
+            )}
           </div>
-          <div className="grid grid-cols-4 gap-2">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="relative aspect-square overflow-hidden rounded-md border bg-muted cursor-pointer hover:opacity-80 transition-opacity"
-              >
-                <Image
-                  src="https://m.media-amazon.com/images/I/71+uDstZNwL._AC_SL1500_.jpg"
-                  alt={`Galaxy Ultra S23 view ${i}`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          {hasAdditionalImages && (
+            <div className="grid grid-cols-4 gap-2">
+              {product.image.data.map((img, index) => (
+                <div
+                  key={index}
+                  className="relative aspect-square overflow-hidden rounded-md border bg-muted cursor-pointer hover:opacity-80 transition-opacity"
+                >
+                  <Image
+                    src={img.attributes.url}
+                    alt={`Vista ${index + 1} de ${product.productName}`}
+                    fill
+                    className="object-contain p-2"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Product Details */}
         <div className="space-y-6">
           <div>
             <div className="flex items-center justify-between">
-              <h1 className="text-3xl font-bold">Galaxy Ultra S23</h1>
+              <h1 className="text-3xl font-bold">{product.productName}</h1>
               <div className="flex gap-2">
-                <Button variant="outline" size="icon">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  aria-label="Agregar a favoritos"
+                >
                   <Heart className="h-5 w-5" />
                 </Button>
-                <Button variant="outline" size="icon">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  aria-label="Compartir producto"
+                >
                   <Share2 className="h-5 w-5" />
                 </Button>
               </div>
             </div>
-            <p className="text-muted-foreground mt-1">Model: SM-S918B/DS</p>
+            <p className="text-muted-foreground mt-1">
+              Categoría:{" "}
+              {product.category?.data?.attributes?.categoryName ||
+                "Sin categoría"}
+            </p>
             <div className="flex items-center gap-2 mt-2">
-              <span className="text-2xl font-bold">$1299.99</span>
-              <span className="text-muted-foreground line-through">
-                $1,059.99
+              <span className="text-2xl font-bold">
+                {formatPrice(product.price)}
               </span>
             </div>
           </div>
 
           <div>
             <p className="text-sm text-muted-foreground mb-4">
-              Publication date: February 17, 2023
+              Capacidad: {product.capacityProduct || "No especificada"}
             </p>
-            <p className="text-sm">
-              Experience the ultimate smartphone with the Galaxy Ultra S23.
-              Featuring a powerful Snapdragon 8 Gen 2 processor, stunning
-              6.7&quot AMOLED display, and professional-grade camera system.
-            </p>
-          </div>
-
-          <Separator />
-
-          {/* Color Selection */}
-          <div>
-            <h2 className="font-medium mb-3">Color</h2>
-            <div className="flex gap-3">
-              {colors.map((color) => (
-                <div
-                  key={color.name}
-                  onClick={() => setSelectedColor(color.name)}
-                  className={`relative cursor-pointer rounded-full p-1 ${
-                    selectedColor === color.name
-                      ? "ring-2 ring-primary ring-offset-2"
-                      : ""
-                  }`}
-                >
-                  <div
-                    style={{ backgroundColor: color.hex }}
-                    className="h-8 w-8 rounded-full"
-                  />
-                  <span className="sr-only">{color.name}</span>
-                </div>
-              ))}
-            </div>
-            <p className="text-sm mt-2">{selectedColor}</p>
-          </div>
-
-          {/* Storage Selection */}
-          <div>
-            <h2 className="font-medium mb-3">Storage</h2>
-            <div className="flex gap-3">
-              {storageOptions.map((storage) => (
-                <Button
-                  key={storage}
-                  variant={selectedStorage === storage ? "default" : "outline"}
-                  onClick={() => setSelectedStorage(storage)}
-                  className="min-w-[80px]"
-                >
-                  {storage}
-                </Button>
-              ))}
-            </div>
+            <p className="text-sm">{product.description}</p>
           </div>
 
           <Separator />
@@ -150,10 +149,14 @@ export default function PhoneDetails() {
           <div className="flex gap-4">
             <Button className="flex-1" size="lg">
               <ShoppingCart className="mr-2 h-5 w-5" />
-              Add to Cart
+              Agregar al Carrito
             </Button>
-            <Button variant="outline" size="lg">
-              Buy Now
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={handleWhatsAppRedirect}
+            >
+              Comprar Ahora
             </Button>
           </div>
 
@@ -161,11 +164,11 @@ export default function PhoneDetails() {
           <Card>
             <CardContent className="p-4">
               <p className="text-sm">
-                <span className="font-medium">Free delivery</span> available for
-                this product
+                <span className="font-medium">Envío gratis</span> disponible
+                para este producto
               </p>
               <p className="text-xs text-muted-foreground mt-1">
-                Estimated delivery: 2-3 business days
+                Tiempo estimado de entrega: 2-3 días hábiles
               </p>
             </CardContent>
           </Card>
@@ -176,62 +179,62 @@ export default function PhoneDetails() {
       <div className="mt-12">
         <Tabs defaultValue="specifications">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="specifications">Specifications</TabsTrigger>
-            <TabsTrigger value="features">Features</TabsTrigger>
-            <TabsTrigger value="reviews">Reviews</TabsTrigger>
+            <TabsTrigger value="specifications">Especificaciones</TabsTrigger>
+            <TabsTrigger value="features">Características</TabsTrigger>
+            <TabsTrigger value="reviews">Reseñas</TabsTrigger>
           </TabsList>
           <TabsContent value="specifications" className="mt-6">
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-lg font-medium mb-4">
-                  Technical Specifications
+                  Especificaciones Técnicas
                 </h3>
                 <div className="space-y-2">
-                  {phoneSpecs.map((spec) => (
-                    <div
-                      key={spec.name}
-                      className="grid grid-cols-2 py-2 border-b"
-                    >
-                      <span className="text-muted-foreground">{spec.name}</span>
-                      <span>{spec.value}</span>
-                    </div>
-                  ))}
+                  {product.specifications?.map(
+                    (spec: Specification, index: number) => (
+                      <div
+                        key={index}
+                        className="grid grid-cols-2 py-2 border-b"
+                      >
+                        <span className="text-muted-foreground">
+                          {spec.name}
+                        </span>
+                        <span>{spec.value}</span>
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-medium mb-4">In the Box</h3>
+                <h3 className="text-lg font-medium mb-4">En la Caja</h3>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>Galaxy Ultra S23 Smartphone</li>
-                  <li>USB-C to USB-C Cable</li>
-                  <li>Ejection Pin</li>
-                  <li>Quick Start Guide</li>
+                  <li>{product.productName}</li>
+                  <li>Cable USB-C</li>
+                  <li>Pin de expulsión</li>
+                  <li>Guía de inicio rápido</li>
                 </ul>
               </div>
             </div>
           </TabsContent>
           <TabsContent value="features" className="mt-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">Key Features</h3>
+              <h3 className="text-lg font-medium">
+                Características Principales
+              </h3>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Professional-grade camera system with 50MP main sensor</li>
-                <li>Snapdragon 8 Gen 2 for lightning-fast performance</li>
-                <li>All-day battery life with 45W fast charging</li>
-                <li>
-                  Stunning 6.7&quot AMOLED display with 120Hz refresh rate
-                </li>
-                <li>IP68 water and dust resistance</li>
-                <li>Enhanced night mode photography</li>
-                <li>Advanced AI features for optimal performance</li>
+                {product.features?.map((feature: string, index: number) => (
+                  <li key={index}>{feature}</li>
+                ))}
               </ul>
             </div>
           </TabsContent>
           <TabsContent value="reviews" className="mt-6">
             <div className="text-center py-8">
               <h3 className="text-lg font-medium">
-                Customer Reviews Coming Soon
+                Reseñas de Clientes Próximamente
               </h3>
               <p className="text-muted-foreground mt-2">
-                Be the first to review this product
+                Sé el primero en reseñar este producto
               </p>
             </div>
           </TabsContent>

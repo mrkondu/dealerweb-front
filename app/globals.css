@@ -3,10 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply font-sans;
-}
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+  }
 
+  body {
+    @apply font-sans;
+  }
+}
 
 @layer utilities {
   .text-balance {

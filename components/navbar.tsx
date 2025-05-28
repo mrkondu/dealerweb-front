@@ -13,10 +13,11 @@ const Navbar = () => {
     <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max-w-4lxl md:max-w-6xl">
       <div className="flex flex-row items-center">
         <Image
-          src={"/logo/DEALERTECH-BLANCO-PNG-1.png"}
+          src="/logo/DEALERTECH-BLANCO-PNG-1.png"
           width={100}
           height={100}
           alt="Logodealer"
+          priority
         />
         <h1 onClick={() => router.push("/")}>
           Dealer

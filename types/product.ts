@@ -8,9 +8,13 @@ export type ProductType = {
     active: boolean;
     isFeatured: boolean;
     image: {
-      id: number;
-      url: string;
-    }[]; // images es un array de objetos, cada objeto con id y url.
+      data: {
+        id: number;
+        attributes: {
+          url: string;
+        };
+      }[];
+    };
     category: {
       data: {
         id: number;
@@ -19,4 +23,9 @@ export type ProductType = {
         };
       };
     };
+    specifications?: {
+      name: string;
+      value: string;
+    }[];
+    features?: string[];
   };
