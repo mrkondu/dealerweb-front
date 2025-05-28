@@ -40,8 +40,8 @@ const ChooseCategory = () => {
             result !== undefined &&
             result.map((category: CategoryType) => {
               const imageUrl = category.mainImage?.[0]?.url
-                ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${category.mainImage[0].url}`
-                : "placeholder.svg"; // Imagen placeholder en caso de no tener una imagen
+                ? `${category.mainImage[0].url}`
+                : "/placeholder.svg"; // Aseguramos que el placeholder esté en la carpeta public
 
               const imageCategory = category;
               console.log(`##### Image category: ${imageUrl}`);
@@ -57,6 +57,11 @@ const ChooseCategory = () => {
                       src={imageUrl}
                       alt={category.categoryName || "Categoría"}
                       className="max-w-[250px] max-h-[150px] transition duration-300 ease-in-out rounded-lg hover:scale-110"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "/placeholder.svg";
+                        console.error(`Error loading image: ${imageUrl}`);
+                      }}
                     />
                     <p className="absolute w-full py-2 text-lg text-center text-white bottom-2 backdrop-blur-lg">
                       {category.categoryName}
