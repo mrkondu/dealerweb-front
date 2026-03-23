@@ -308,10 +308,10 @@ export default function ProductsPage() {
               className="bg-white dark:bg-neutral-900 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
               onClick={() => handleProductClick(product.slug)}
             >
-              {product.image?.[0] && (
+              {product.image?.data?.[0] && (
                 <div className="relative w-full aspect-square">
                   <Image
-                    src={product.image[0].url}
+                    src={product.image.data[0].attributes.url}
                     alt={product.productName}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
