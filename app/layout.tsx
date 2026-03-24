@@ -52,7 +52,6 @@ export default function RootLayout({
         >
           {/* <Navbar /> */}
           {children}
-          <BackgroundPaths />
           {/* <Footer /> */}
         </ThemeProvider>
       </body>
