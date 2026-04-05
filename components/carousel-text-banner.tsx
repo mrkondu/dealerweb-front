@@ -153,19 +153,29 @@ const CarouselTextBanner = () => {
               <CardHeader className="flex flex-row items-center gap-4">
                 <Shield className="h-8 w-8" />
                 <div className="grid gap-1">
-                  <CardTitle>Recuperación de Datos</CardTitle>
+                  <CardTitle>Upgrade almacenamiento</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Recuperamos información de discos duros dañados, memorias USB
-                  y otros dispositivos de almacenamiento.
+                  Aumentos de memoria en dispositivos Apple, Optimizaciones de sistemas operativos.
                 </CardDescription>
               </CardContent>
             </Card>
           </div>
+          {/* Botón de WhatsApp integrado */}
+          <div className="flex justify-center mt-12">
+            <a 
+              href="https://wa.me/5493764585715?text=Hola%20Dealertech!%20Vi%20la%20página%20y%20quería%20hacer%20una%20consulta."
+              className="inline-block bg-violet-600 hover:bg-violet-500 text-white font-bold py-3 px-8 sm:py-4 sm:px-12 rounded-xl transition-all transform hover:scale-105 shadow-[0_0_25px_rgba(139,92,246,0.4)] text-base sm:text-lg"
+            >
+              Consultar por WhatsApp
+            </a>
+          </div>
         </div>
+        
       </section>
+    
     </div>
     
   );

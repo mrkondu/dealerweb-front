@@ -1,4 +1,5 @@
-import BackgroundPaths from "./(routes)/home/page";
+import BackgroundPaths from "@/components/background-paths";
+import Image from "next/image";
 
 export default function MaintenancePage() {
   return (
@@ -10,11 +11,8 @@ export default function MaintenancePage() {
         {/* Glow de fondo para esta sección */}
         <div className="absolute w-64 h-64 sm:w-96 sm:h-96 bg-violet-600/10 rounded-full blur-[80px] sm:blur-[150px] -z-10"></div>
         
-        <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-8 z-10">
-          {/* Logo */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter text-violet-500 drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]">
-            DEALER<span className="text-white">TECH</span>
-          </h1>
+        <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-8 z-10 flex flex-col items-center">
+
 
           <div className="space-y-3 sm:space-y-4">
             <h2 className="text-lg sm:text-2xl md:text-3xl font-semibold uppercase tracking-widest text-slate-200">

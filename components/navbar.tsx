@@ -13,21 +13,14 @@ const Navbar = () => {
     <nav className="flex items-center justify-between p-4 mx-auto max-w-7xl">
       <div className="flex items-center gap-2">
         <Image
-          src="/logo/DEALERTECH-BLANCO-PNG-1.png"
-          width={100}
-          height={100}
+          src="/logo/main-logo.png"
+          width={150}
+          height={60}
           alt="Logo Dealertech"
           priority
-          className="cursor-pointer"
+          className="cursor-pointer object-contain"
           onClick={() => router.push("/")}
         />
-        <h1
-          className="text-xl font-medium cursor-pointer"
-          onClick={() => router.push("/")}
-        >
-          Dealer
-          <span className="font-bold">tech</span>
-        </h1>
       </div>
 
       <div className="hidden sm:block">

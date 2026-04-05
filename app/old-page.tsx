@@ -3,7 +3,7 @@ import BannerDiscount from "@/components/banner-discount";
 import CarouselTextBanner from "@/components/carousel-text-banner";
 import ChooseCategory from "@/components/choose-category";
 import FeaturedProducts from "@/components/featured-product";
-import BackgroundPaths from "./(routes)/home/page";
+import BackgroundPaths from "@/components/background-paths";
 
 //En este componente se montan todos los demas que crearemos
 export default function Home() {
